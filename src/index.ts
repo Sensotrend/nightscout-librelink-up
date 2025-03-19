@@ -142,7 +142,7 @@ async function main(): Promise<void>
     await uploadToNightScout(glucoseGraphData);
 }
 
-export async function login(): Promise<AuthTicket | null>
+export async function login(email?: string, password?: string): Promise<AuthTicket | null>
 {
     config = readConfig()
 
@@ -152,8 +152,8 @@ export async function login(): Promise<AuthTicket | null>
         const response: { data: LoginResponse } = await axios.post(
             url,
             {
-                email: config.linkUpUsername,
-                password: config.linkUpPassword,
+                email: email || config.linkUpUsername,
+                password: password || config.linkUpPassword,
             },
             {
                 headers: libreLinkUpHttpHeaders,
