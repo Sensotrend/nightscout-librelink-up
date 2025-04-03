@@ -179,6 +179,7 @@ export async function login(email?: string, password?: string): Promise<AuthTick
             }
             logger.info("Logged in to LibreLink Up");
             updateAccountId(response.data.data.user.id);
+            updateAuthTicket(response.data.data.authTicket);
             return response.data.data.authTicket;
         } catch (err)
         {
